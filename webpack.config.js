@@ -32,18 +32,23 @@ module.exports = {
 	output: {
 		filename: '[name].[chunkhash].js',
 		path: path.resolve(__dirname, 'dist')
-	},
+  },
 
-	plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin()],
+  plugins: [
+    new webpack.ProgressPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'index.html'),
+    })
+  ],
 
-	module: {
+  module: {
 		rules: [
 			{
 				test: /.(ts|tsx)?$/,
 				loader: 'ts-loader',
 				include: [path.resolve(__dirname, 'src')],
 				exclude: [/node_modules/]
-			}
+      }
 		]
 	},
 
