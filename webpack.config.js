@@ -1,20 +1,6 @@
-const path = require('path');
-const webpack = require('webpack');
-
-/*
- * SplitChunksPlugin is enabled by default and replaced
- * deprecated CommonsChunkPlugin. It automatically identifies modules which
- * should be splitted of chunk by heuristics using module duplication count and
- * module category (i. e. node_modules). And splits the chunks…
- *
- * It is safe to remove "splitChunks" from the generated configuration
- * and was added as an educational example.
- *
- * https://webpack.js.org/plugins/split-chunks-plugin/
- *
- */
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 /*
  * We've enabled HtmlWebpackPlugin for you! This generates a html
@@ -26,53 +12,41 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
  */
 
 module.exports = {
-	mode: 'development',
-	entry: './src/index.ts',
+  mode: "development",
+  entry: "./src/index.tsx",
 
-	output: {
-		filename: '[name].[chunkhash].js',
-		path: path.resolve(__dirname, 'dist')
+  output: {
+    filename: "[name].[chunkhash].js",
+    path: path.resolve(__dirname, "dist")
   },
 
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html'),
+      template: path.resolve(__dirname, "index.html")
     })
   ],
 
   module: {
-		rules: [
-			{
-				test: /.(ts|tsx)?$/,
-				loader: 'ts-loader',
-				include: [path.resolve(__dirname, 'src')],
-				exclude: [/node_modules/]
+    rules: [
+      {
+        test: /.css$/,
+        loader: "style-loader!css-loader",
+        exclude: [/node_modules/]
+      },
+      {
+        test: /\.(jsx?|tsx?)$/,
+        exclude: [/node_modules/],
+        loader: "babel-loader"
       }
-		]
-	},
+    ]
+  },
 
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				vendors: {
-					priority: -10,
-					test: /[\\/]node_modules[\\/]/
-				}
-			},
+  devServer: {
+    open: true
+  },
 
-			chunks: 'async',
-			minChunks: 1,
-			minSize: 30000,
-			name: true
-		}
-	},
-
-	devServer: {
-		open: true
-	},
-
-	resolve: {
-		extensions: ['.tsx', '.ts', '.js']
-	}
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"]
+  }
 };
