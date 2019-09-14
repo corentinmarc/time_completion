@@ -23,7 +23,7 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "index.html")
+      template: path.resolve(__dirname, "index.tpl.html")
     })
   ],
 
