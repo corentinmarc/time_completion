@@ -1,5 +1,5 @@
 import React from 'react';
-import { number } from '@storybook/addon-knobs';
+import { number, color } from '@storybook/addon-knobs';
 
 import { Gauge } from './Gauge';
 
@@ -12,6 +12,8 @@ export const gaugeCircular = () => (
     min={number('Min', 0)}
     max={number('Max', 100)}
     value={number('Value', 34)}
+    color={color('Color', '#000')}
+    strokeWidth={number('Stroke Width', 5)}
   />
 );
 
