@@ -2,33 +2,28 @@ import React, { useEffect, useState } from 'react';
 
 import './App.css';
 
-const toPercent = (value: number) => (value * 100).toFixed(2);
-
-const computeAdvancement = (startTime: number, endTime: number) => {
-  const currentTime = new Date().getTime();
-
-  const totalDuration = endTime - startTime;
-  const passedDuration = currentTime - startTime;
-  return passedDuration / totalDuration;
-};
+import { Gauge } from '../Gauge/index';
 
 type AppProps = {
   startTime: number;
   endTime: number;
 };
 
+const getCurrentTime = () => new Date().getTime();
+
 const App = ({ startTime, endTime }: AppProps) => {
-  const [advancement, setAdvancement] = useState();
+  const [currentTime, setCurrentTime] = useState(getCurrentTime());
 
   useEffect(() => {
-    const interval = setInterval(
-      () => setAdvancement(computeAdvancement(startTime, endTime)),
-      1000,
-    );
+    const interval = setInterval(() => setCurrentTime(getCurrentTime()), 1000);
     return () => clearInterval(interval);
   });
 
-  return <div className="percent">{toPercent(advancement)}%</div>;
+  return (
+    <div className="app">
+      <Gauge min={startTime} max={endTime} value={currentTime} />
+    </div>
+  );
 };
 
 export { App };

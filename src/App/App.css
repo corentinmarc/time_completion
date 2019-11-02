@@ -1,12 +1,13 @@
 body {
-  background: #000;
+  margin: 0;
 }
 
-.percent {
-  font-size: 80px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
+.app {
+  background: #000;
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
