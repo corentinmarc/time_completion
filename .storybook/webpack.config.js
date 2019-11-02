@@ -12,7 +12,19 @@ module.exports = {
   ],
   module: {
     rules: [
-      // add your custom rules.
+      {
+        test: /.css$/,
+        loader: 'style-loader!css-loader',
+        exclude: [/node_modules/],
+      },
+      {
+        test: /\.(jsx?|tsx?)$/,
+        exclude: [/node_modules/],
+        loader: 'babel-loader',
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };
