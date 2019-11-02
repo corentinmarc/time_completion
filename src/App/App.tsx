@@ -21,7 +21,9 @@ const App = ({ startTime, endTime }: AppProps) => {
 
   return (
     <div className="app">
-      <Gauge min={startTime} max={endTime} value={currentTime} />
+      <div className="app-gauge">
+        <Gauge min={startTime} max={endTime} value={currentTime} color="#fff" />
+      </div>
     </div>
   );
 };

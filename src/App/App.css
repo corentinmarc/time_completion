@@ -13,3 +13,8 @@ body,
   align-items: center;
   justify-content: center;
 }
+
+.app-gauge {
+  width: 30vw;
+  height: 30vw;
+}
