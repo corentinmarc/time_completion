@@ -1,12 +1,14 @@
-body {
+html,
+body,
+#app {
   margin: 0;
+  height: 100%;
 }
 
 .app {
   background: #000;
   height: 100%;
   width: 100%;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
