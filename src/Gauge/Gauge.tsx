@@ -55,6 +55,18 @@ const Gauge = memo(
           viewBox="0 0 100 100"
           style={{ display: 'block' }}
         >
+          {/* Render Gauge  Background */}
+          <path
+            d={`M 50,50 m 0,-${50 - strokeWidth / 2} a ${50 -
+              strokeWidth / 2},${50 - strokeWidth / 2} 0 1 1 0,${100 -
+              strokeWidth} a ${50 - strokeWidth / 2},${50 -
+              strokeWidth / 2} 0 1 1 0,-${100 - strokeWidth}`}
+            stroke={color}
+            strokeOpacity={0.25}
+            strokeWidth={strokeWidth}
+            fillOpacity="0"
+          ></path>
+          {/* Render Gauge */}
           <path
             d={`M 50,50 m 0,-${50 - strokeWidth / 2} a ${50 -
               strokeWidth / 2},${50 - strokeWidth / 2} 0 1 1 0,${100 -
@@ -64,6 +76,7 @@ const Gauge = memo(
             strokeWidth={strokeWidth}
             fillOpacity="0"
             style={{
+              transition: '.3s',
               strokeDasharray: `
                 ${Math.PI * (100 - strokeWidth) * advancement},
                 ${Math.PI * (100 - strokeWidth) * (1 - advancement)}
